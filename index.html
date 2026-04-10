@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flaxz Ultra Dios PRO</title>
+
+<style>
+
+/* ===== GENERAL ===== */
+body{
+margin:0;
+font-family:Arial;
+background:#0074D9;
+color:white;
+}
+
+/* ===== MENU ===== */
+nav{
+background:linear-gradient(red,darkred);
+text-align:center;
+padding:15px;
+box-shadow:0 0 20px red;
+}
+
+nav a{
+margin:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+/* ===== SECCIONES ===== */
+.page{
+display:none;
+padding:40px;
+text-align:center;
+}
+
+.active{display:block;}
+
+/* ===== HERO ===== */
+.hero{
+padding:80px 20px;
+}
+
+.hero h1{
+font-size:55px;
+color:red;
+text-shadow:0 0 15px red,0 0 25px blue;
+}
+
+/* ===== CARDS ===== */
+.cards{
+display:flex;
+justify-content:center;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.card{
+background:#1a1a1a;
+padding:20px;
+width:220px;
+border-radius:10px;
+box-shadow:0 0 10px red;
+}
+
+/* ===== BOTONES ===== */
+button{
+padding:12px 20px;
+margin:5px;
+background:linear-gradient(red,darkred);
+border:none;
+color:white;
+cursor:pointer;
+border-radius:10px;
+box-shadow:0 0 10px red;
+}
+
+button:hover{
+background:linear-gradient(blue,darkblue);
+}
+
+/* ===== CAMPO ===== */
+#field{
+width:320px;
+height:200px;
+background:linear-gradient(green,darkgreen);
+margin:auto;
+position:relative;
+border:3px solid white;
+box-shadow:0 0 15px lime;
+}
+
+/* ===== BALON ===== */
+#ball{
+width:20px;
+height:20px;
+background:white;
+border-radius:50%;
+position:absolute;
+bottom:10px;
+left:150px;
+transition:0.3s;
+}
+
+/* ===== PORTERO ===== */
+#keeper{
+width:60px;
+height:20px;
+background:cyan;
+position:absolute;
+top:10px;
+left:130px;
+transition:0.1s;
+}
+
+/* ===== TEXTO ===== */
+textarea{
+width:250px;
+height:100px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- ===== MENU ===== -->
+<nav>
+<a onclick="showPage('inicio')">Inicio</a>
+<a onclick="showPage('sobre')">Sobre mí</a>
+<a onclick="showPage('contacto')">Contacto</a>
+<a onclick="showPage('historia')">Historia</a>
+<a onclick="showPage('juego')">Juego</a>
+<a onclick="showPage('logros')">Logros</a>
+<a onclick="showPage('gemas')">Gemas gratis</a>
+<a onclick="showPage('buzon')">Sugerencias</a>
+</nav>
+
+<!-- ===== INICIO ===== -->
+<div id="inicio" class="page active">
+<div class="hero">
+<h1>🕷️ FLAXZ</h1>
+<p id="rango">Estado: Jugador</p>
+
+<div class="cards">
+<div class="card">🎮 Gaming PRO</div>
+<div class="card">🎬 Edición avanzada</div>
+<div class="card">🚀 Meta: ser viral</div>
+</div>
+
+<br>
+<button onclick="showPage('juego')">Jugar ⚽</button>
+</div>
+</div>
+
+<!-- ===== SOBRE ===== -->
+<div id="sobre" class="page">
+<h2>Sobre mí 🔥</h2>
+<p>Soy Flaxz, creador en crecimiento 🚀</p>
+
+<h3>🎁 Recompensas FC Mobile</h3>
+<button onclick="reward()">Uniforme nuevo</button>
+<button onclick="reward()">Balón pro</button>
+<button onclick="reward()">Botas elite</button>
+</div>
+
+<!-- ===== CONTACTO ===== -->
+<div id="contacto" class="page">
+<h2>Mis redes</h2>
+
+<a href="https://instagram.com/kx_flaxz" target="_blank">
+<button>Instagram</button>
+</a>
+
+<a href="https://www.tiktok.com/@flaxz.fc" target="_blank">
+<button>TikTok</button>
+</a>
+
+</div>
+
+<!-- ===== HISTORIA ===== -->
+<div id="historia" class="page">
+<h2>Historia 📖</h2>
+<p id="story">Empiezas desde cero...</p>
+<p id="obj">Objetivo: 1 gol</p>
+</div>
+
+<!-- ===== JUEGO ===== -->
+<div id="juego" class="page">
+<h2>Modo Carrera ⚽🔥</h2>
+
+<div id="field">
+<div id="ball"></div>
+<div id="keeper"></div>
+</div>
+
+<br>
+<button onclick="shoot('izq')">Izquierda</button>
+<button onclick="shoot('centro')">Centro</button>
+<button onclick="shoot('der')">Derecha</button>
+<button onclick="activarPoder()">⚡ Poder</button>
+
+<p id="info"></p>
+<p id="stats"></p>
+</div>
+
+<!-- ===== LOGROS ===== -->
+<div id="logros" class="page">
+<h2>Logros 🏆</h2>
+<p id="l1">❌ Primer Gol</p>
+<p id="l2">❌ 5 Goles</p>
+<p id="l3">❌ 10 Goles</p>
+<p id="l4">❌ Leyenda</p>
+<p id="l5">❌ Dios</p>
+</div>
+
+<!-- ===== GEMAS ===== -->
+<div id="gemas" class="page">
+<h2>Gemas gratis 💎</h2>
+
+<input id="nombre" placeholder="Tu nombre"><br><br>
+<input id="cantidad" type="number" placeholder="Cantidad"><br><br>
+
+<button onclick="gemas()">Recibir gemas</button>
+</div>
+
+<!-- ===== BUZON ===== -->
+<div id="buzon" class="page">
+<h2>Sugerencias 📩</h2>
+
+<textarea id="sugerencia"></textarea><br><br>
+<button onclick="enviar()">Enviar</button>
+
+<p id="msg"></p>
+</div>
+
+<script>
+
+/* ===== CAMBIO PAGINA ===== */
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
+}
+
+/* ===== VARIABLES ===== */
+let goles=0;
+let puntos=0;
+let leyenda=false;
+let dios=false;
+let combo=0;
+let poder=false;
+
+/* ===== HISTORIA ===== */
+function historiaUpdate(){
+
+if(goles<1){
+story.innerText="Eres desconocido...";
+obj.innerText="Objetivo: 1 gol";
+}
+else if(goles<5){
+story.innerText="Subiendo nivel 🔥";
+obj.innerText="Objetivo: 5 goles";
+}
+else if(goles<10){
+story.innerText="Temido 😈";
+obj.innerText="Objetivo: 10 goles";
+}
+else if(goles<20){
+story.innerText="LEYENDA 🏆";
+obj.innerText="Objetivo: 20 goles";
+leyenda=true;
+rango.innerText="Estado: LEYENDA";
+}
+else{
+story.innerText="DIOS ABSOLUTO 💀⚡";
+obj.innerText="Sin límites";
+dios=true;
+rango.innerText="Estado: DIOS";
+}
+
+}
+
+/* ===== LOGROS ===== */
+function logros(){
+if(goles>=1) l1.innerText="✅ Primer Gol";
+if(goles>=5) l2.innerText="✅ 5 Goles";
+if(goles>=10) l3.innerText="✅ 10 Goles";
+if(leyenda) l4.innerText="🏆 LEYENDA";
+if(dios) l5.innerText="⚡ DIOS";
+}
+
+/* ===== PODER ===== */
+function activarPoder(){
+poder=true;
+info.innerText="⚡ PODER ACTIVADO";
+}
+
+/* ===== JUEGO ===== */
+function shoot(dir){
+
+let pos={izq:50,centro:130,der:210};
+
+let eleccion;
+
+if(dios && !poder){
+eleccion=dir;
+}else{
+let op=["izq","centro","der"];
+eleccion=op[Math.floor(Math.random()*3)];
+}
+
+keeper.style.left=pos[eleccion]+"px";
+ball.style.left=pos[dir]+"px";
+ball.style.top="40px";
+
+setTimeout(()=>{
+
+if(dir===eleccion && !poder){
+info.innerText="🧤 PARADA";
+combo=0;
+}else{
+info.innerText="⚽ GOL x"+(combo+1);
+goles++;
+puntos+=10;
+combo++;
+}
+
+poder=false;
+ball.style.top="180px";
+
+stats.innerText="Goles: "+goles+" | Puntos: "+puntos+" | Combo: "+combo;
+
+historiaUpdate();
+logros();
+
+},300);
+
+}
+
+/* ===== GEMAS ===== */
+function gemas(){
+let n=nombre.value;
+let c=cantidad.value;
+alert("💎 "+n+" recibió "+c+" gemas");
+}
+
+/* ===== BUZON ===== */
+function enviar(){
+msg.innerText="✅ Sugerencia enviada";
+}
+
+/* ===== RECOMPENSAS ===== */
+function reward(){
+alert("🎁 Item desbloqueado (fake FC Mobile)");
+}
+
+</script>
+
+</body>
+</html>
